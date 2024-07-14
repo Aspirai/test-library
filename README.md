@@ -155,3 +155,25 @@ git log
 回退版本
 git reset -- hard 版本号
 
+### 拉取远程恢复到本地
+
+git pull orgin master：
+先将远程仓库master中的信息同步到本地仓库master中
+
+git checkout -- test001.txt (或还原全部 git checkout -- \*)
+将工作区修改的文件直接还原为最新版本
+
+git push orgin master:
+orgin是远程主机，master表示是远程服务器上的master分支和本地分支重名的简写，分支名是可以修改的
+git reset HEAD
+回退至当前版本(本地仓库,并移出暂存区)
+git reset HEAD^
+回退至上个版本(本地仓库,并移出暂存区)
+git reset --hard HEAD^
+回退至上一个版本(本地仓库,并移出暂存区,同时更新工作区的文件)
+git reset --hard HEAD^^
+回退至上上个版本(本地仓库,并移出暂存区,同时更新工作区的文件)
+git reset –hard commitID
+回退到某一次提交记录(不可逆,之前的提交记录会清除)
+git revert commitID -m 1
+撤销某一次的提交记录
