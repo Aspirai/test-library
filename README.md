@@ -190,3 +190,27 @@ git reset –hard commitID
 git revert commitID -m 1
 
 撤销某一次的提交记录
+
+## git设置邮箱和用户名
+
+1 . 用户名和邮箱的作用
+
+    用户名和邮箱地址是本地git客户端的一个变量 . 用户每次提交代码都会记录用户名和邮箱 .
+
+2 . 设置
+2.1 设置用户名
+
+git config --global user.name "username"
+
+2.2 设置邮箱 (没有双引号)
+
+git config --global user.email useremail@qq.com
+
+3 . 查看用户名和密码
+
+git config user.name
+git config user.email
+
+4 . 查看其他配置信息(git设置列表)
+
+git config --list
