@@ -235,7 +235,3 @@ Enter same passphrase again:   ///再次确认密码（直接回车）
 *本机已完成ssh key设置，其存放路径为：c:/Users/用户名/.ssh/下。
 
 将id_rsa.pub 中的一大串内容拷贝到GitHub上
-
-
-## npm使用
-
