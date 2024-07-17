@@ -6,12 +6,13 @@ import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 const chartData = [
-  { month: 'January', desktop: 186 },
-  { month: 'February', desktop: 305 },
-  { month: 'March', desktop: 237 },
-  { month: 'April', desktop: 73 },
-  { month: 'May', desktop: 209 },
-  { month: 'June', desktop: 214 },
+  { day: 'January', desktop: 186 },
+  { day: 'February', desktop: 305 },
+  { day: 'March', desktop: 237 },
+  { day: 'April', desktop: 73 },
+  { day: 'May', desktop: 209 },
+  { day: 'June', desktop: 214 },
+  { day: 'June', desktop: 214 },
 ];
 
 const chartConfig = {
@@ -33,7 +34,7 @@ export default function Component() {
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="day"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -46,9 +47,9 @@ export default function Component() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Trending up by 5.2% this day <TrendingUp className="h-4 w-4" />
         </div>
-        <div className="leading-none text-muted-foreground">Showing total visitors for the last 6 months</div>
+        <div className="leading-none text-muted-foreground">Showing total visitors for the last 6 days</div>
       </CardFooter>
     </Card>
   );

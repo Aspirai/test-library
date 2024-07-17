@@ -164,23 +164,18 @@ git checkout -- test001.txt (或还原全部 git checkout -- \*)
 将工作区修改的文件直接还原为最新版本
 
 git push orgin master:
-
 orgin是远程主机，master表示是远程服务器上的master分支和本地分支重名的简写，分支名是可以修改的
 
 git reset HEAD
-
 回退至当前版本(本地仓库,并移出暂存区)
 
 git reset HEAD^
-
 回退至上个版本(本地仓库,并移出暂存区)
 
 git reset --hard HEAD^
-
 回退至上一个版本(本地仓库,并移出暂存区,同时更新工作区的文件)
 
 git reset --hard HEAD^^
-
 回退至上上个版本(本地仓库,并移出暂存区,同时更新工作区的文件)
 
 git reset –hard commitID
@@ -235,7 +230,3 @@ Enter same passphrase again:   ///再次确认密码（直接回车）
 *本机已完成ssh key设置，其存放路径为：c:/Users/用户名/.ssh/下。
 
 将id_rsa.pub 中的一大串内容拷贝到GitHub上
-
-
-## npm使用
-
