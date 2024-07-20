@@ -75,3 +75,14 @@ npm config set registry https://registry.npmjs.org
 | npm prune       | 清除项目中没有被使用的包 |
 
 源：https://cloud.tencent.com/developer/article/2277596
+
+
+### 自己使用的
+
+1.npm list
+查看当前所有包名及版本（包名信息存储在package.json中）
+
+2.npm list 包名
+查看指定包版本信息
+
+3.
