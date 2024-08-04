@@ -9,6 +9,9 @@ cls
 
 3.显示当前目录下文件
 dir
+
+4.查看电池容量
+powercfg/batteryreport
 ```
 
 #### Windows CMD常用命令大全

@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+#### tailwind样式修改
+
+tailwind样式在代码运行时，依据内置JS脚本，生成相应className关键字自动生成相应样式；
+
+在类似路径next-js\node_modules\tailwindcss\src\util\color.js中，
