@@ -31,3 +31,30 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
 }
 ```
 
+![image-20240831212106575](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240831212106575.png)
+
+#### 2.取消button默认边框
+
+设置前
+
+![image-20240912175612045](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240912175612045.png)
+
+```scss
+.verification-button {
+  width: 200rpx;
+  height: 60rpx;
+  &[disabled] { // 设置禁用状态时样式
+    border: none;
+    font-size: 22rpx;
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  &::after{ // 设置hover状态 取消默认边框显示
+    border: none;
+  }
+}
+```
+
+设置后
+
+![image-20240912175633879](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240912175633879.png)

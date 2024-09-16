@@ -1,4 +1,4 @@
-#### 1.报错找不到“sass”的类型定义文件。程序包含该文件是因为:隐式类型库 "sass" 的入口点ts
+#### 1.报错找不到“sass”的类型定义文件。程序包含该文件是因为:隐式类型库 "sass" 的入口点
 
 ```
 #是版本问题
@@ -88,3 +88,17 @@ function App() {
 export default App;
 ```
 
+#### 3.报错error occurs:ENOENT: no such file or directory?
+
+![image-20240809142551975](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240809142551975.png)
+
+```
+解决：
+1.清除全部编译缓存；
+2.真机调试改为1.0；
+3.退出再重进；
+```
+
+#### 4.报错Please do not register multiple Pages in pages/home/index.js
+
+![image-20240809142755123](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240809142755123.png)

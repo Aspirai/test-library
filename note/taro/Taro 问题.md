@@ -183,3 +183,197 @@ export default observer(LogInButton);
 
 ##### 7.3另一组件用法同上
 
+#### 8.get请求和post请求
+
+```
+GET：用于获取资源，参数附加在URL中，不适合传递敏感信息，幂等且可重复，响应可缓存。
+POST：用于提交数据，参数在请求体中，适合传递大量和敏感信息，非幂等且不建议重复发送，响应不缓存。
+```
+
+#### 9.引入@antmjs/vantui组件库
+
+```
+//site：https://antmjs.github.io/vantui/main/#/home
+
+1.安装
+npm install @antmjs/vantui
+
+2.通过babel引入组件
+npm i babel-plugin-import -D
+
+3.配置babel引入组件样式
+#babel.config.js
+
+const {
+  plugin
+} = require("postcss");
+// https://github.com/NervJS/taro/blob/next/packages/babel-preset-taro/README.md
+module.exports = {
+  presets: [
+    ['taro', {
+      framework: 'react',
+      ts: true
+    }]
+  ],
+  "plugins": [ //plugins是一个数组
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "@/components": "./src/components",
+          "@/pages": "./src/pages",
+          "@/echarts": "./src/echarts-taro3-react/lib",
+        },
+      },
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@antmjs/vantui",
+        "libraryDirectory": "es",
+        "style": true
+      },
+      "@antmjs/vantui",
+    ]
+  ]
+}
+
+4.注意事项
+需要注意开发者工具的项目设置：
+    需要设置关闭 ES6 转 ES5 功能，开启可能报错
+    需要设置关闭上传代码时样式自动补全，开启可能报错
+    需要设置关闭代码压缩上传，开启可能报错
+
+```
+
+#### 10.在数组中添加数组
+
+```
+1.设置循环后的数组
+const dates = ['2024-7-11', '2024-7-17', '2024-7-26']
+const dateColumns = dates.map((item) => ({
+  title: item,
+  dataIndex: 'numerical_value',
+  align: undefined,
+  sort: true,
+}));
+//注：组件设定align 只接受"left" | "right" | "center" | undefined"中一个，指定'left' as 'left',
+
+2.添加循环后的数组
+const columns: ITableProps['columns'] = [
+  {
+    title: '简称',
+    dataIndex: 'abbreviation',
+    align: 'left',
+    render: (val) => <View style={{ color: '#2196F3' }}>{val}</View>,
+    width: 80,
+  },
+  ...dateColumns,
+  {
+    title: '参考区间',
+    dataIndex: 'section',
+    sort: true,
+  }
+]
+```
+
+#### 11.useState方法异步执行
+
+问题描述：在请求方法中，使用了两次set，但是最后一次set覆盖了之前的set；
+
+```
+const handleSend = () => {
+  if (inputValue.trim()) { //如果输入的值不为空; trim() 方法用于删除字符串的头尾空白符
+    setMessages([...messages, { type: 'user', content: inputValue }]); //将输入的值添加到messages数组中
+    console.log(inputValue);
+    Taro.request({
+      url: 'http://127.0.0.1:4523/m1/4874230-4530188-default/chat/',
+      method: 'POST',
+      data: {
+        content: inputValue
+      },
+      success: (res) => {
+        console.log(res.data);
+        // 将返回的数据添加到messages数组中
+        setMessages([...messages, { type: 'agent', content: res.data.content }]);
+      },
+      fail: (err) => {
+        console.log('err', err);
+      },
+    });
+    setInputValue(''); //清空输入框
+  }
+};
+```
+
+![image-20240809184537851](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240809184537851.png)
+
+![image-20240809184541948](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240809184541948.png)
+
+原因：由于 [`setMessages`](vscode-file://vscode-app/c:/Program Files/CodeSoftware/Microsoft VS Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) 是异步的，[`messages`](vscode-file://vscode-app/c:/Program Files/CodeSoftware/Microsoft VS Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) 变量在回调中仍然是旧的值。
+
+解决：使用函数式的setMessages来解决这个问题
+
+```
+const handleSend = () => {
+  if (inputValue.trim()) {
+    setMessages((prevMessages) => [...prevMessages, { type: 'user', content: inputValue }]);
+    console.log(inputValue);
+    // 延时请求
+    setTimeout(() => {
+      Taro.request({
+        url: 'http://127.0.0.1:4523/m1/4874230-4530188-default/chat/',
+        method: 'POST',
+        data: {
+          content: inputValue
+        },
+        success: (res) => {
+          console.log(res.data);
+          // 将返回的数据添加到messages数组中
+          setMessages((prevMessages) => [...prevMessages, { type: 'agent', content: res.data.content }]);
+        },
+        fail: (err) => {
+          console.log('err', err);
+        },
+      });
+    }, 1000);
+    setInputValue(''); //清空输入框
+  }
+};
+```
+
+#### 12.异步创建
+
+```
+ const Index = async () => {}
+ 
+ const avatarUrl = await Taro.getStorage({ key: 'avatarUrl' }).then(res => res.data);
+
+ const nickName = await Taro.getStorage({ key: 'nickName' }).then(res => res.data);
+```
+
+#### 13.设置Picker组件弹性布局不生效问题
+
+Picker组件内默认为一个元素，无法使用弹性布局；需要使用一个整体View组件，在内部设置弹性布局；
+
+```
+{/* 注：Picker中默认为一个元素 */}
+<Picker
+  mode='selector'
+  range={initialData.map((item) => item.title)}
+  onChange={handleChangeValue}
+  className='main-left'
+>
+  <View className='picker'>
+    <View className='picker-text'>{selectedValue}</View>
+    <Image
+      className='picker-image'
+      src={require('../assets/charts/arrow-down.svg')}
+    />
+  </View>
+</Picker>
+```
+

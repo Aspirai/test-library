@@ -37,11 +37,23 @@ Ctrl + K + S
 Ctrl + K + R
 ```
 
+#### 5.快速滚动页面
+
+```
+使用Alt + 滚轮 可以5倍速滚动
+```
+
+#### 6.快速跳转行
+
+```
+Ctrl + G   跳转到指定行
+Ctrl + Shift + \   跳转到下一个括号
+Ctrl + 1 || 2 || 3  跳转到指定分栏
+```
+
+
+
 ## VS Code用户指南与使用技巧
-
-  📅 2020.02.28      ·  ☕ 20 分钟           
-
-- [#vscode](https://www.thisfaner.com/t/vscode/)
 
 ## 一、User Guide（用户指南）
 

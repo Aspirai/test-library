@@ -48,6 +48,11 @@ git pull
 
 强制推送本地到远端（会覆盖他人修改内容，尽量不使用）
 git push -force
+
+修改最后一次的提交
+git commit --amend
+保存:wq
+注：需使用git push --forceqiang'z
 ```
 
 ```
@@ -217,7 +222,7 @@ git push origin master Git会把master分支推送到远程库对应的远程分
 
 
 
-### 拉取远程恢复到本地
+## 拉取远程恢复到本地
 
 ```
 git pull orgin master：
@@ -340,4 +345,18 @@ Enter same passphrase again:   ///再次确认密码（直接回车）
 ​    – 在弹出的界面中，将要覆盖的提交标记为 `edit`。
 ​    – 使用 `git commit –amend` 命令修改提交内容，然后使用 `git rebase –continue` 命令继续 rebase。
 ​    – 最后使用 `git push -f <远程仓库名称> <本地分支名称>` 命令强制推送到远程仓库。
+
+```
+// Vertex Shader
+attribute vec3 aPosition;
+void main() {
+    gl_Position = vec4(aPosition, 1.0);
+}
+
+// Fragment Shader
+precision mediump float;
+void main() {
+    gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0); // Orange color
+}
+```
 
