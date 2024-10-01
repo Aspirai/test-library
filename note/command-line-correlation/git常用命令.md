@@ -1,9 +1,8 @@
-### 我使用的
+## 常用命令
+
+### 1.推送、拉取、提交
 
 ```
-初始化仓库
-git init
-
 查看仓库状态
 git status
 
@@ -55,6 +54,8 @@ git commit --amend
 注：需使用git push --forceqiang'z
 ```
 
+### 2.常用其他命令
+
 ```
 #SSH链接克隆仓库
 git clone LINK
@@ -73,6 +74,8 @@ git checkout master
 git config --global push.autoSetupRemote true
 ```
 
+### 3.本地分支落后推送解决
+
 ```
 #本地分支比远程分支落后【 ! [rejected] master -> master (non-fast-forward) 】
 
@@ -89,9 +92,9 @@ git commit -m "Resolved merge conflicts"
 git push origin master
 ```
 
-```
-#将本地分支推送到指定的远程仓库
+### 4.将本地分支推送到指定的远程仓库
 
+```
 1.添加远程仓库（如果尚未添加）
 git remote add origin LINK
 
@@ -108,8 +111,9 @@ git commit -m "Resolved merge conflicts"
 git push --force origin master
 ```
 
+### 5.配置 Git 使用 SSH 远程仓库
+
 ```
-#配置 Git 使用 SSH 远程仓库
 1.修改远程仓库地址为 SSH：
 如果远程仓库地址当前使用的是 HTTPS URL，需要将其修改为 SSH URL。删除原有的 HTTPS 远程仓库：
 git remote remove origin
@@ -120,6 +124,73 @@ git remote add origin git@github.com:Aspirai/taro.git
 3.验证远程仓库地址：
 git remote -v
 ```
+
+### 6.修改远程仓库名后，修改本地推送链接
+
+```
+1.本地查看远程仓库名
+git remote -v
+
+2.设置新远程仓库名(xxxx为新仓库名)
+git remote set-url origin xxxx.git
+```
+
+### 7.创建新GitHub仓库并关联本地仓库
+
+```tsx
+1.初始化本地仓库
+git init
+
+2.添加所有文件到本地仓库
+git add .
+
+3.提交文件到本地仓库(inital是提交的注释)
+git commit -m "inital"
+
+4.关联远程仓库(git@github.com:xxxx是远程仓库地址)
+git remote add origin git@github.com:xxxx
+
+5.推送本地仓库到远程仓库(-u 的作用是将本地分支推送到远程仓库，并设置该分支与远程分支关联)
+git push –u origin master
+(将本地的 master 分支推送到远程仓库 origin，并将本地的 master 分支与远程的 origin/master 分支关联起来。之后可以直接使用 git push 或 git pull 进行同步操作。)
+```
+
+#### 1.若是报错rejected
+
+![image-20240921191719235](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240921191719235.png)
+
+#### 1.1.方法一：**先拉取一下再推送**
+
+```tsx
+git pull origin master --allow-unrelated-histories
+```
+
+**`git pull origin master`**：拉取远程 `origin` 仓库的 `master` 分支。
+
+**`--allow-unrelated-histories`**：允许合并两个没有共同历史的仓库。
+
+#### 1.2方法二：**放弃本地更改，直接拉取远程代码**
+
+```tsx
+git fetch origin
+git reset --hard origin/master
+```
+
+#### 1.3方法三：**强制覆盖远程仓库**
+
+```tsx
+git push origin master --force
+```
+
+
+
+### 8.移除本地关联的远程仓库
+
+#### 1.```git remote remove origin```
+
+![image-20240921190119226](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240921190119226.png)
+
+
 
 
 

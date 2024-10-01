@@ -58,3 +58,50 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
 设置后
 
 ![image-20240912175633879](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240912175633879.png)
+
+#### 3.隐藏页面滚动条
+
+1. **局部内容滚动并隐藏滚动条**
+
+使用 `scroll-view` 容器实现局部滚动，并隐藏滚动条。
+
+```html
+<scroll-view class="content-scroll">
+  <!-- 内容部分 -->
+</scroll-view>
+```
+
+```css
+/* wxss */
+.content-scroll {
+  height: 100vh; /* 限制滚动区域高度为全屏高度 */
+  overflow-y: scroll; /* 启用垂直滚动 */
+  -webkit-overflow-scrolling: touch; /* 平滑滚动效果 */
+}
+
+/* 隐藏滚动条 */
+.content-scroll::-webkit-scrollbar {
+  display: none;
+}
+```
+
+2.**仅允许内部元素滚动，页面不滚动**
+
+整个页面不滚动，内部某个容器可以滚动，设置如下：
+
+```css
+page {
+  height: 100vh; /* 页面整体不可滚动 */
+  overflow: hidden;
+}
+
+.scroll-area {
+  height: 100%; /* 内部区域可以滚动 */
+  overflow-y: scroll;
+}
+
+/* 隐藏滚动条 */
+.scroll-area::-webkit-scrollbar {
+  display: none;
+}
+```
