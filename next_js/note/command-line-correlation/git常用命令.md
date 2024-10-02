@@ -368,7 +368,12 @@ git config --local include.path /path/to/another/config/file
 
 ```
 $ cd ~  ///保证当前路径在”~”下
-$ ssh-keygen -t rsa -C "你的邮箱地址"  ///建议填写自己真实有效的邮箱地址
+$ ssh-keygen -t rsa -C "你的邮箱地址" -f 文件的名称 ///建议填写自己真实有效的邮箱地址
+```
+
+```tsx
+PS C:\Users\Administrator> cd .ssh
+PS C:\Users\Administrator\.ssh> ssh-keygen -t rsa -C "xxxx@qq.com" -f test_library
 ```
 
 结果：
