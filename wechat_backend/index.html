@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket 测试</h1>
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+
+        socket.onopen = () => {
+            console.log('连接已打开');
+            socket.send('你好，服务端');
+        };
+
+        socket.onmessage = (event) => {
+            console.log('收到消息:', event.data);
+        };
+
+        socket.onclose = () => {
+            console.log('连接已关闭');
+        };
+
+        socket.onerror = (error) => {
+            console.error('WebSocket 错误:', error);
+        };
+    </script>
+</body>
+</html>
