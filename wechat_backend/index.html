@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebSocket Client</title>
 </head>
+
 <body>
     <h1>WebSocket 测试</h1>
     <script>
@@ -26,6 +28,14 @@
         socket.onerror = (error) => {
             console.error('WebSocket 错误:', error);
         };
+
+        const test = () => {
+            // console.log('发送消息');
+            socket.send('你好，服务端');
+        }
+
     </script>
+    <button onclick="test()">发送</button>
 </body>
+
 </html>
