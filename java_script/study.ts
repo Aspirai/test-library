@@ -1,0 +1,1 @@
+let RegExpObject = 'Hello world';
