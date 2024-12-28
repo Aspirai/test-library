@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>style test</title>
+</head>
+
+<style>
+  body {
+    /* padding: 20px; */
+    /* display: grid; */
+    /* place-items: center; */
+    /* grid-template-columns: repeat(3, 1fr); */
+    /* gap: 20px; */
+    border: 1px solid black;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .one {
+    background-color: red;
+  }
+
+  .two {
+    background-color: green;
+  }
+
+  .three {
+    background-color: blue;
+  }
+
+  .four {
+    background-color: yellow;
+  }
+
+  .five {
+    background-color: purple;
+  }
+
+  .six {
+    background-color: orange;
+  }
+
+  .seven {
+    background-color: pink;
+  }
+
+  .eight {
+    background-color: brown;
+  }
+
+  .nine {
+    background-color: gray;
+  }
+
+  .box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<body>
+  <div class="box one">Box 1</div>
+  <div class="box two">Box 2</div>
+  <!-- <div class="box three">Box 3</div>
+  <div class="box four">Box 4</div>
+  <div class="box five">Box 5</div>
+  <div class="box six">Box 6</div>
+  <div class="box seven">Box 7</div>
+  <div class="box eight">Box 8</div>
+  <div class="box nine">Box 9</div> -->
+
+  <!-- 元素平滑右下移动样式 -->
+  <!-- <div id="box" style="width: 50px; height: 50px; background-color: purple;"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    gsap.to("#box", {
+      x: 300,
+      y: 200,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+    });
+  </script> -->
+
+</body>
+
+<footer>
+  <button onclick="moveBox()">Box 1左移动10px</button>
+  <button onclick="addMarginBottom()">Box 1添加10px MarginBottom</button>
+  <button onclick="addMarginTop()">Box 2添加10px marginTop</button>
+  <script>
+    const box = document.querySelector(".one");
+    let position = 0;
+    function moveBox() {
+      position += 10;
+      box.style.transform = `translateX(${position}px)`;
+      if (position >= 300) {
+        position = 0;
+      }
+    }
+    let marginBottom = 0;
+    function addMarginBottom() {
+      marginBottom += 10;
+      box.style.marginBottom = `${marginBottom}px`;
+    }
+
+    const boxTwo = document.querySelector(".two");
+    let marginTop = 0;
+    function addMarginTop() {
+      marginTop += 10;
+      boxTwo.style.marginTop = `${marginTop}px`;
+    }
+  </script>
+
+</footer>
+
+</html>
