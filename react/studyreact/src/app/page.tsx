@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 // 井字棋游戏
 function Square({ value, onSquareClick }) {
@@ -185,6 +185,12 @@ export default function Home() {
       </button>
     );
   }
+
+  useEffect(() => {
+    fetch('https://api.github.com/users').then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   return (
     <div className='grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
