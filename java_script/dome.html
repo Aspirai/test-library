@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo</title>
+</head>
+
+<style>
+  .body {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: absolute;
+  }
+</style>
+
+<body>
+  <div class="body" id="body">
+  </div>
+  <script>
+    const body = document.getElementById('body');
+    let offsetX, offsetY;
+    const onMouseMove = (e) => {
+      body.style.left = e.clientX - offsetX + 'px';
+      body.style.top = e.clientY - offsetY + 'px';
+    };
+
+    body.addEventListener('mousedown', (e) => {
+      offsetX = e.clientX - body.offsetLeft;
+      offsetY = e.clientY - body.offsetTop;
+      body.style.backgroundColor = 'red';
+      document.addEventListener('mousemove', onMouseMove);
+    });
+
+    body.addEventListener('mouseup', () => {
+      body.style.backgroundColor = 'blue';
+      document.removeEventListener('mousemove', onMouseMove);
+    });
+  </script>
+</body>
+
+</html>
