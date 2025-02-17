@@ -14,30 +14,46 @@
     background-color: blue;
     position: absolute;
   }
+
+  .body2 {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    position: absolute;
+    top: 200px;
+    left: 200px;
+  }
 </style>
 
 <body>
+  <text>hello</text>
   <div class="body" id="body">
   </div>
+  <div class="body2"></div>
   <script>
-    const body = document.getElementById('body');
-    let offsetX, offsetY;
-    const onMouseMove = (e) => {
-      body.style.left = e.clientX - offsetX + 'px';
-      body.style.top = e.clientY - offsetY + 'px';
-    };
 
-    body.addEventListener('mousedown', (e) => {
-      offsetX = e.clientX - body.offsetLeft;
-      offsetY = e.clientY - body.offsetTop;
-      body.style.backgroundColor = 'red';
-      document.addEventListener('mousemove', onMouseMove);
-    });
+    function drag(obj) {
+      let offsetX, offsetY;
+      const onMouseMove = (e) => {
+        obj.style.left = e.clientX - offsetX + 'px';
+        obj.style.top = e.clientY - offsetY + 'px';
+      };
 
-    body.addEventListener('mouseup', () => {
-      body.style.backgroundColor = 'blue';
-      document.removeEventListener('mousemove', onMouseMove);
-    });
+      obj.addEventListener('mousedown', (e) => {
+        offsetX = e.clientX - obj.offsetLeft;
+        offsetY = e.clientY - obj.offsetTop;
+        document.addEventListener('mousemove', onMouseMove);
+      });
+
+      obj.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', onMouseMove);
+      });
+    }
+
+    drag(document.getElementById('body'));
+    drag(document.querySelector('.body2'));
+
+    // return false;
   </script>
 </body>
 
