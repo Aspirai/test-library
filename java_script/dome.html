@@ -23,13 +23,22 @@
     top: 200px;
     left: 200px;
   }
+
+  .body3 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 400px;
+    left: 400px;
+  }
 </style>
 
 <body>
   <text>hello</text>
-  <div class="body" id="body">
-  </div>
+  <div class="body" id="body"></div>
   <div class="body2"></div>
+  <div class="body3"></div>
   <script>
 
     function drag(obj) {
@@ -52,6 +61,12 @@
 
     drag(document.getElementById('body'));
     drag(document.querySelector('.body2'));
+
+    // addEventListener(event, function, useCapture)
+    // removeEventListener(event, function, useCapture)
+    document.querySelector('.body3').addEventListener('mousedown', (e) => {
+      console.log('mousedown');
+    });
 
     // return false;
   </script>
