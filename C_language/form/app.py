@@ -1,3 +1,4 @@
+import sqlite3
 from flask import Flask, render_template, request
 
 DATABASE = "register.db"  # 数据库文件名
@@ -30,7 +31,11 @@ def register():
     if sport not in SPORTS:
         return render_template("failure.html", message="Invalid sport")
 
-    REGISTRANTS[name] = sport
+    db = sqlite3.connect("register.db")
+    cur = db.cursor()
+    cur.execute("INSERT INTO register (name, sport) VALUES (?, ?)", (name, sport))
+    db.commit()
+    # db.close()
 
     return render_template("success.html")
     # if not request.form.get("name") or not request.form.get("sport"):
@@ -40,4 +45,10 @@ def register():
 
 @app.route("/registrants")
 def registrants():
-    return render_template("registrants.html", registrants=REGISTRANTS)
+
+    con = sqlite3.connect("register.db")
+    cur = con.cursor()
+    cur.execute("SELECT name, sport FROM register;")
+    rows = cur.fetchall()
+    con.close()
+    return render_template("registrants.html", rows=rows)
