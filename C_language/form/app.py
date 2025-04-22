@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 
+DATABASE = "register.db"  # 数据库文件名
+
 app = Flask(__name__)
 
 SPORTS = [
@@ -38,4 +40,4 @@ def register():
 
 @app.route("/registrants")
 def registrants():
-    return render_template("registrants.html",registrants=REGISTRANTS)
+    return render_template("registrants.html", registrants=REGISTRANTS)
