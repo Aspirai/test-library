@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello</title>
+  <script>
+    /*     function greet(event)
+        {
+          // let name = document.querySelector('#name').value;
+          // alert('hello, ' + name);
+          alert('hello, ' + document.querySelector('#name').value);
+          // 阻止默认提交行为
+          event.preventDefault();
+        }
+        let form = document.querySelector('form');
+        form.addEventListener('submit',greet); */
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('form').addEventListener('submit', function (event) {
+        alert('hello, ' + document.querySelector('#name').value);
+        event.preventDefault();
+      });
+    })
+  </script>
+</head>
+
+<body>
+  <form>
+    <input autocomplete="off" autofocus id="name" name="name" placeholder="Name" type="text">
+    <input type="submit">
+  </form>
+
+</body>
+
+</html>

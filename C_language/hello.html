@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello</title>
+  <script>
+    function greet() {
+      //id选择器----‘#’
+      let name = document.querySelector('#name').value;
+      alert('Hello,' + name)
+    }
+  </script>
+</head>
+
+<body style="background-color: black;">
+  <!-- return false; 不提交数据---- -->
+  <form onsubmit="greet(); return false;">
+    <!-- autocomplete  -->
+    <input autocomplete="false" autofocus id="name" name="name" placeholder="Name" type="text">
+    <input type="submit">
+  </form>
+</body>
+
+</html>

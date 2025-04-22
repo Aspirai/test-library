@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block body %}
+<p>hello, {% if name %} {{name}} {%else%} world {%endif%}</p>
+<form
+  action="/"
+  method="post"
+>
+  <input
+    autocomplete="off"
+    autofocus
+    name="name"
+    placeholder="name"
+  />
+  <button type="submit">Greet</button>
+</form>
+{% endblock %}

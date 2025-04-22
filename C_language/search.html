@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多引擎搜索 Demo</title>
+  <style>
+    /* 简单的样式，让界面更清晰 */
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .search-container {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      /* 使用 Flexbox 布局 */
+      align-items: center;
+      /* 垂直居中对齐 */
+      gap: 10px;
+      /* 元素之间的间距 */
+    }
+
+    #keywordInput {
+      flex-grow: 1;
+      /* 输入框占据剩余空间 */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    #engineSelect {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>选择搜索引擎进行搜索</h1>
+
+  <div class="search-container">
+    <input type="text" id="keywordInput" placeholder="请输入搜索关键词...">
+    <select id="engineSelect">
+      <option value="google">Google</option>
+      <option value="bing">Bing</option>
+      <option value="baidu">Baidu (百度)</option>
+      <option value="duckduckgo">DuckDuckGo</option>
+    </select>
+    <button onclick="performSearch()">搜索</button>
+  </div>
+
+  <script>
+    function performSearch() {
+      // 1. 获取输入框元素和选择器元素
+      const keywordInput = document.getElementById('keywordInput');
+      const engineSelect = document.getElementById('engineSelect');
+
+      // 2. 获取用户输入的关键词和选择的搜索引擎
+      const keyword = keywordInput.value.trim(); // trim() 去除首尾空格
+      const selectedEngine = engineSelect.value;
+
+      // 3. 检查关键词是否为空
+      if (!keyword) {
+        alert('请输入要搜索的关键词！');
+        keywordInput.focus(); // 将焦点设置回输入框
+        return; // 停止执行函数
+      }
+
+      // 4. 对关键词进行 URL 编码，防止特殊字符导致 URL 错误
+      const encodedKeyword = encodeURIComponent(keyword);
+
+      // 5. 根据选择的搜索引擎构建搜索 URL
+      let searchUrl = '';
+      switch (selectedEngine) {
+        case 'google':
+          searchUrl = `https://www.google.com/search?q=${encodedKeyword}`;
+          break;
+        case 'bing':
+          searchUrl = `https://www.bing.com/search?q=${encodedKeyword}`;
+          break;
+        case 'baidu':
+          // 注意：百度使用的是 'wd' 参数
+          searchUrl = `https://www.baidu.com/s?wd=${encodedKeyword}`;
+          break;
+        case 'duckduckgo':
+          searchUrl = `https://duckduckgo.com/?q=${encodedKeyword}`;
+          break;
+        // case 'sogou':
+        //     searchUrl = `https://www.sogou.com/web?query=${encodedKeyword}`;
+        //     break;
+        // 可以根据需要添加更多搜索引擎的 case
+        default:
+          console.error('未知的搜索引擎:', selectedEngine);
+          alert('发生错误，选择了未知的搜索引擎。');
+          return; // 如果没有匹配的引擎，则不继续执行
+      }
+
+      // 6. 在新的浏览器标签页中打开构建好的搜索 URL
+      // 使用 window.open(url, '_blank') 会在新标签页打开
+      // 使用 window.location.href = url 会在当前页面跳转
+      if (searchUrl) {
+        window.open(searchUrl, '_blank');
+      }
+    }
+
+    // (可选) 添加回车键触发搜索的功能
+    document.getElementById('keywordInput').addEventListener('keypress', function (event) {
+      // 检查是否按下了 Enter 键 (其 keyCode 通常是 13)
+      if (event.key === 'Enter' || event.keyCode === 13) {
+        event.preventDefault(); // 阻止可能的默认行为（如表单提交）
+        performSearch(); // 调用搜索函数
+      }
+    });
+  </script>
+
+</body>
+
+</html>
