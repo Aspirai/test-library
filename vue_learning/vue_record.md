@@ -57,7 +57,9 @@
 
    - #### 插值语法
 
-     `name`为配置项`data`中的`name`值
+     `name`为配置项`data`中的`name`值,`{{}}`中为JS表达式;
+
+     JS表达式是一种特殊的JS语句,JS语句等价于JS代码;
 
      ```html
      <div id="root">
