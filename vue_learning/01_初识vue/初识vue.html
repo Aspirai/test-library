@@ -9,16 +9,32 @@
   <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
   <!-- 引入样式表 -->
   <link rel="stylesheet" href="../css/style.css">
-  <!-- 引入vue -->
+  <!-- 引入vue 脚本,全局多出一个Vue函数,需要new使用 -->
   <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 
 <body>
+  <!-- 
+    初识Vue：
+      1.想让Vue工作,就必须创建一个Vue实例,且要传入一个配置对象;
+      2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法；
+      3.root容器里的代码被称为【Vue模板】;
+  -->
   <div id="root">
-    Hello,Kaleus
+    Hello,{{name}}
   </div>
   <script type="text/javascript">
     Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示
+
+    //创建Vue实例
+    new Vue({
+      //`#`为id选择器,若是类元素class,使用`.`选择即`.root`
+      el:'#root', //el:元素选择器,选择元素id为root的元素,指定当前Vue实例为那个容器服务,值通常为CSS选择器字符串,也可以使用下面的写法
+      // el:document.getElementById('root')
+      data:{ //data中用于存储数据,数据供el所指定的容器去使用
+        name:'Kaleus'
+      }
+    })
   </script>
 
 </body>
