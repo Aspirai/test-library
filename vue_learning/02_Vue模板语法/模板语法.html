@@ -27,8 +27,9 @@
     <h1>指令语法</h1>
     <!-- `<div :id="val">` ====> `<div id="{{ val }}">` -->
     <!-- `v-bind:` ====> `:` 绑定指令,指令以`v-`开头 -->
-    <a v-bind:href="url" x="hello">去尚硅谷学习</a>
-    <a :href="url.toUpperCase()">学习</a>
+    <a v-bind:href="url" x="hello">去学习</a>
+    <!-- 多级引用;指令语法后是JS表达式 -->
+    <a :href="url.toUpperCase()">去{{school.name}}学习</a>
   </div>
   <script type="text/javascript">
     Vue.config.productionTip = false
@@ -36,6 +37,9 @@
       el: '#root',
       data: {
         name: 'Kaleus',
+        school: {
+          name: 'Aspirai',
+        },
         url: 'http://www.atguigu.com',
       }
     })
