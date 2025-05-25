@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // 井字棋游戏
 function Square({ value, onSquareClick }) {
@@ -171,9 +171,9 @@ export default function Home() {
   // Custom component
   // state is maintained independently for each component
   function MyButton() {
-    // const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
     const handleClick = () => {
-      setCount(count1 + 1);
+      setCount(count + 1);
     };
     return (
       <button
@@ -181,7 +181,7 @@ export default function Home() {
         className='px-4 py-2 text-white bg-blue-500 rounded-md'
         onClick={handleClick}
       >
-        Clicked {count1} times
+        Clicked {count} times
       </button>
     );
   }
