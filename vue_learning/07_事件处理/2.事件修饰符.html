@@ -30,21 +30,42 @@
       6.passive:事件的默认行为立即执行,无需等待事件回调执行完毕;
   -->
   <div id="root">
-    <h2>你好{{name}}</h2>
+    <h2>你好,{{name}}</h2>
+
     <!-- 阻止默认事件 -->
     <a href="https://github.com/Aspirai" @click.prevent="showInfo">点我提示信息</a>
+
     <!-- 阻止事件冒泡 -->
     <div id="demo1" @click="showInfo">
       <!-- 内部元素添加stop -->
       <button @click.stop="showInfo">点我提示信息</button>
     </div>
+
     <!-- 事件只触发一次 -->
     <button @click.once="showInfo">点我提示信息</button>
+
     <!-- 使用事件的捕获模式 -->
     <div @click.capture="showMsg(1)" class=" box1" style="background-color: skyblue; padding: 5px">
       box1
       <div @click="showMsg(2)" class="box2" style="background-color: orange; padding: 5px">box2</div>
     </div>
+
+    <!-- 只有event.target是当前操作的元素时才触发事件;添加在外部元素 -->
+    <div class="demo2" @click.self="showTarget" style="background-color: skyblue;padding: 5px;">
+      <button @click="showTarget">点我提示信息</button>
+    </div>
+
+    <!-- 事件的默认行为立即执行,无需等待事件回调执行完毕,移动端或者平板端使用较多 -->
+      <!-- 滚动事件绑定scroll,滚动条滚动触发,滚动到底部后无法触发,键盘上下键或者鼠标滚轮 -->
+    <ul @scroll="demo" style="width: 200px; height: 200px; background-color: peru; overflow: auto;">
+      <!-- wheel滚动,鼠标滚动一次触发一次,滚动到底部后,仍可以触发 -->
+    <!-- <ul @wheel.passive="demo" style="width: 200px; height: 200px; background-color: peru; overflow: auto;"> -->
+      <li style="height: 100px; border: 1px solid white;">1</li>
+      <li style="height: 100px; border: 1px solid white;">2</li>
+      <li style="height: 100px; border: 1px solid white;">3</li>
+      <li style="height: 100px; border: 1px solid white;">4</li>
+    </ul>    
+
   </div>
 </body>
 
@@ -65,6 +86,15 @@
       },
       showMsg(e) {
         console.log(e)
+      },
+      showTarget(e){
+        console.log(e.target)
+      },
+      demo(){
+        for(let i = 0; i < 100000; i++){
+          console.log('#')
+        }
+        console.log('累坏了')
       }
     }
   })
