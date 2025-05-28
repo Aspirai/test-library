@@ -73,8 +73,17 @@
       -->
       <input
         type="text"
-        placeholder="按下特殊按键,提示输入"
-        @keyup.Control="showInfo"
+        placeholder="按下Ctrl,提示输入"
+        @keyup.ctrl="showInfo"
+      />
+
+      <!-- 
+        组合按键
+      -->
+      <input
+        type="text"
+        placeholder="按下Ctrl+Y,提示输入"
+        @keyup.ctrl.y="showInfo"
       />
     </div>
   </body>

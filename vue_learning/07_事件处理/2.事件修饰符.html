@@ -34,11 +34,17 @@
 
     <!-- 阻止默认事件 -->
     <a href="https://github.com/Aspirai" @click.prevent="showInfo">点我提示信息</a>
-
+    
     <!-- 阻止事件冒泡 -->
     <div id="demo1" @click="showInfo">
       <!-- 内部元素添加stop -->
-      <button @click.stop="showInfo">点我提示信息</button>
+      <!-- <button @click.stop="showInfo">点我提示信息</button> -->
+      
+      <!-- 
+        修饰符可以连着写
+        多事件连接使用,先阻止冒泡再阻止跳转 
+      -->
+      <a href="https://github.com/Aspirai" @click.stop.prevent="showInfo">点我提示信息</a>
     </div>
 
     <!-- 事件只触发一次 -->
