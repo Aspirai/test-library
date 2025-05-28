@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>9.1天气案例</title>
+    <link
+      rel="icon"
+      href="../img/favicon.ico"
+      type="image/x-icon"
+    />
+    <script
+      type="text/javascript"
+      src="../js/vue.js"
+    ></script>
+    <style></style>
+  </head>
+  <body>
+    <!-- 
+    -->
+    <div id="root">
+      <!-- <h2>今天天气很{{weather}}</h2>
+      <br />
+      <button @click="changeIsTrue">点击改变天气</button> -->
+
+      <!-- 绑定事件的时候: @xxx="yyy" yyy可以写一些简单的语句 -->
+      <h2>今天天气很{{weatherInfo}},{{x}}</h2>
+      <br />
+      <!-- <button @click="changIsHot">点击改变天气</button> -->
+      <!-- <button @click="isHot = !isHot;x++">点击改变天气</button> -->
+      <button @click="window.alert(1)">点击改变天气</button>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    Vue.config.productionTip = false;
+
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        isTrue: true,
+        weather: '凉爽',
+
+        isHot: true,
+        x: 1,
+        window,
+      },
+      methods: {
+        changeIsTrue() {
+          this.isTrue = !this.isTrue;
+          this.isTrue ? (this.weather = '凉爽') : (this.weather = '炎热');
+        },
+        changIsHot() {
+          this.isHot = !this.isHot;
+          this.x++;
+        },
+        alert() {
+          alert(1);
+        },
+      },
+      computed: {
+        weatherInfo() {
+          return this.isHot ? '炎热' : '凉爽';
+        },
+      },
+    });
+  </script>
+</html>
