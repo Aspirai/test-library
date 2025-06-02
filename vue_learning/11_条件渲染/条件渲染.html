@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>11.条件渲染</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+			条件渲染：
+			1.v-if
+				写法：
+					(1).v-if=“表达式”
+					(2).v-else-if="表达式"
+					(3).v-else="表达式"
+				适用于：切换频率较低的场景。
+				特点：不展示的DOM元素直接被移除。
+				注意：v-if可以和：v-else-if、v-else一起使用，但要求结构不能被“打断”。
+			2.v-show
+				写法：v-show=“表达式”
+				适用于：切换频率较高的场景。
+				特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+			3.备注:使用v-if时,元素可能无法获取到，而使用v-show一定可以获取到。
+		-->
+		<!-- 使用v-show做条件渲染 -->
+		<div id="root">
+			<div v-show="key">{{name}}</div>
+			<div v-show="1 === 1">{{name}}</div>
+			<hr />
+			<!-- 使用v-if和v-else-if做条件渲染 -->
+			<div>当前的n值是:{{value}}</div>
+			<button @click="changeValue">点我加一</button>
+			<button @click="value++">点我加一</button>
+			<!--
+				template与v-if的结合使用
+				template本身不具有标签属性,不影响html结构,不能配合v-show使用
+			-->
+			<template v-if="value === 2">
+				<div v-if="value === 1">Angular</div>
+				<div v-else-if="value === 1">React</div>
+				<div v-else-if="value === 2">React</div>
+				<div v-else-if="value === 3">Vue</div>
+			</template>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name: 'Kaleus',
+				key: true,
+				value: 1,
+			},
+			methods: {
+				changeValue() {
+					return this.value++;
+				},
+			},
+		});
+	</script>
+</html>
