@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>9.4监视属性简写</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+    -->
+		<div id="root">
+			<h2>今天天气很{{weatherInfo}}</h2>
+			<hr />
+			<button @click="changeIsHot">点击改变天气</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				isHot: true,
+			},
+			methods: {
+				changeIsHot() {
+					this.isHot = !this.isHot;
+				},
+			},
+			computed: {
+				weatherInfo() {
+					return this.isHot ? '炎热' : '凉爽';
+				},
+			},
+			watch: {
+				// 正常写法
+				/* isHot: {
+					// immediate: true, //初始化时调用handler
+					// deep: true, //深度监视
+					// isHot属性发生修改时执行
+					handler(newValue, oldValue) {
+						console.log('isHot被修改了', newValue, oldValue);
+					},
+				}, */
+
+				// 简写形式
+				isHot(newValue, oldValue) {
+					console.log('isHot被修改了', newValue, oldValue);
+				},
+			},
+		});
+		// 正常写法
+		vm.$watch('isHot', {
+			immediate: true, //初始化时调用handler
+			deep: true, //深度监视
+			// isHot属性发生修改时执行
+			handler(newValue, oldValue) {
+				console.log('isHot被修改了', newValue, oldValue);
+			},
+		});
+		// 简写形式
+		vm.$watch('isHot', function (newValue, oldValue) {
+			console.log('isHot被修改了', newValue, oldValue);
+		});
+	</script>
+</html>
