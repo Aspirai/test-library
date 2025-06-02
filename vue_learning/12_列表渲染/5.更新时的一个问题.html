@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.5.更新时的一个问题</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<button @click="changeOne">修改第一个人的信息</button>
+			<ul>
+				<li v-for="item in persons" :key="item.id">{{item.name}} -- {{item.age}}</li>
+			</ul>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				persons: [
+					{ id: 1, name: 'Aspirai', age: 16 },
+					{ id: 2, name: 'Kaleus', age: 12 },
+					{ id: 3, name: 'Yuan', age: 13 },
+					{ id: 4, name: 'Ai', age: 11 },
+				],
+			},
+			methods: {
+				changeOne() {
+					// this.persons[0].name = 'happy',  //生效
+					// this.persons[0].age = '14'  //生效
+					this.persons[0] = { id: 1, name: 'happy', age: 14 };
+				},
+			},
+		});
+	</script>
+</html>

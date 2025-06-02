@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.7.模拟一个数据监测</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<h2>姓名：{{name}}</h2>
+			<h2>地址：{{address}}</h2>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name: 'Kaleus',
+				address: 'ChangZhou',
+				officeClerk: {
+					name: 'star',
+					address: 'ZhongLou',
+				},
+				work: [{ name: 'code', content: 'Vue' }],
+			},
+		});
+	</script>
+</html>

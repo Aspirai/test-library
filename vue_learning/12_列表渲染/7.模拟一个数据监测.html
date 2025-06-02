@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.6.Vue监测数据改变的原理_对象</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<h2>姓名：</h2>
+			<h2>地址：{{address}}</h2>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		let data = {
+			name: 'Kaleus',
+			address: 'ChangZhou',
+		};
+
+		//创建一个监视的实例对象，用于监视data中属性的变化
+		const obs = new Observer(data);
+		console.log('obs is', obs);
+
+		// 准备一个vm实例对象
+		let vm = {};
+		vm._data = data = obs;
+
+		function Observer(obj) {
+			//汇总对象中所有的属性形成一个数组
+			const keys = Object.keys(obj);
+			// 遍历
+			keys.forEach(item => {
+				Object.defineProperty(this, item, {
+					get() {
+						return obj[item];
+					},
+					set(val) {
+						console.log(`${item}被修改了`);
+						obj[item] = val;
+					},
+				});
+			});
+		}
+	</script>
+</html>

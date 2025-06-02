@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.8.Vue.set的使用</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<h2>姓名：{{person.name}}</h2>
+			<h2>地址：{{person.address}}</h2>
+			<h2 v-if="person.sex">性别：{{person.sex}}</h2>
+			<button @click="addSex">添加一个性别属性</button>
+			<hr />
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				person: {
+					name: 'Kaleus',
+					address: 'ChangZhou',
+				},
+				officeClerk: {
+					name: 'star',
+					address: 'ZhongLou',
+				},
+				work: [{ name: 'code', content: 'Vue' }],
+			},
+			methods: {
+				addSex() {
+					// Vue.set(this.person, 'sex', '男');
+					this.$set(this.person, 'sex', '女');
+				},
+			},
+		});
+	</script>
+</html>
