@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.4.列表排序</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<input type="text" placeholder="请输入值" v-model="keyWord" />
+			<button @click="sortType = 2">升序排列</button>
+			<button @click="sortType = 1">降序排列</button>
+			<button @click="sortType = 0">原排列</button>
+			<ul>
+				<li v-for="item in filPersons" :key="item.id">{{item.name}} -- {{item.age}}</li>
+			</ul>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				keyWord: '',
+				sortType: 0,
+				persons: [
+					{ id: 1, name: 'Aspirai', age: 16 },
+					{ id: 2, name: 'Kaleus', age: 12 },
+					{ id: 3, name: 'Yuan', age: 13 },
+					{ id: 4, name: 'Ai', age: 11 },
+				],
+			},
+			methods: {},
+			computed: {
+				filPersons() {
+					const arr = this.persons.filter(item => {
+						return item.name.indexOf(this.keyWord) !== -1;
+					});
+					if (this.sortType) {
+						// b在前为升序，为降序
+						arr.sort((a, b) => {
+							return this.sortType === 1 ? b.age - a.age : a.age - b.age;
+						});
+					}
+					return arr;
+				},
+			},
+		});
+	</script>
+</html>
