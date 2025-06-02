@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.3.列表过滤</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<input type="text" placeholder="请输入值" v-model="keyWord" />
+			<ul>
+				<li v-for="item in filPersons" :key="item.id">{{item.name}} -- {{item.age}}</li>
+			</ul>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		/* const vm = new Vue({
+			el: '#root',
+			data: {
+				keyWord: '',
+				persons: [
+					{ id: 1, name: 'Aspirai', age: 11 },
+					{ id: 2, name: 'Kaleus', age: 12 },
+					{ id: 3, name: 'Yuan', age: 13 },
+					{ id: 4, name: 'Ai', age: 14 },
+				],
+				filPersons: '',
+			},
+			methods: {},
+			watch: {
+				keyWord: {
+					immediate: true,
+					handler(val) {
+						this.filPersons = this.persons.filter(item => {
+							return item.name.indexOf(val) !== -1;
+						});
+					},
+				},
+			},
+			computed: {},
+		}); */
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				keyWord: '',
+				persons: [
+					{ id: 1, name: 'Aspirai', age: 11 },
+					{ id: 2, name: 'Kaleus', age: 12 },
+					{ id: 3, name: 'Yuan', age: 13 },
+					{ id: 4, name: 'Ai', age: 14 },
+				],
+			},
+			methods: {},
+			computed: {
+				filPersons() {
+					return this.persons.filter(item => {
+						return item.name.indexOf(this.keyWord) !== -1;
+					});
+				},
+			},
+		});
+	</script>
+</html>
