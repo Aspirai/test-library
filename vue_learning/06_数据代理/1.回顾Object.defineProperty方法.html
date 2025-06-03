@@ -1,67 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>6.1_数据代理</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>6.1_数据代理</title>
-  <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
-  <script type="text/javascript" src="../js/vue.js"></script>
-</head>
+	<body>
+		<div id="root"></div>
+		<script type="text/javascript">
+			let person = {
+				name: '张三',
+				sex: '男',
+			};
+			// defineProperty用于直接在对象上定义一个新属性或者修改对象上的现有属性,并返回该对象
+			// Object.defineProperty(obj, prop, descriptor)
+			// obj：要在其上定义属性的对象
+			// prop：要定义或修改的属性的名称
+			// descriptor：将被定义或修改的属性描述符
+			// 使用 Object.defineProperty() 添加的属性是不可写、不可枚举和不可配置的
+			Object.defineProperty(person, 'age', {
+				value: 18,
+				enumerable: true, // 开启可以枚举
+				writable: true, // 开启可以修改
+				configurable: true, // 开启可以删除
+			});
 
-<body>
-  <!-- 
-  -->
-  <div id="root">
+			// 输出keys值
+			console.log(Object.keys(person));
+			for (let index in person) {
+				// 输出value值
+				console.log(person[index]);
+			}
 
-  </div>
-  <script type="text/javascript">
-    let person = {
-      name: "张三",
-      sex: "男",
-    }
-    // defineProperty用于直接在对象上定义一个新属性或者修改对象上的现有属性,并返回该对象
-    // Object.defineProperty(obj, prop, descriptor)
-    // obj：要在其上定义属性的对象
-    // prop：要定义或修改的属性的名称
-    // descriptor：将被定义或修改的属性描述符
-    // 使用 Object.defineProperty() 添加的属性是不可写、不可枚举和不可配置的
-    Object.defineProperty(person,'age',{
-      value:18,
-      enumerable: true, // 开启可以枚举
-      writable: true, // 开启可以修改
-      configurable: true, // 开启可以删除
-    })
+			let number = 18;
+			let person1 = {
+				name: 'Kaleus',
+				sex: 'man',
+				age: number,
+			};
 
-    // 输出keys值
-    console.log(Object.keys(person))
-    for(let index in person) {
-      // 输出value值
-      console.log(person[index])
-    }
-
-    let number = 18
-    let person1 = {
-      name: 'Kaleus',
-      sex: 'man',
-      age: number
-    }
-
-    Object.defineProperty(person1,'age',{
-      // 读取值
-      get(){
-        console.log('读取了age')
-        return number
-      },
-      // 修改值
-      set(value){
-        console.log('修改了age,值为',value)
-        number = value
-      }
-    })
-
-  </script>
-
-</body>
-
+			Object.defineProperty(person1, 'age', {
+				// 读取值
+				get() {
+					console.log('读取了age');
+					return number;
+				},
+				// 修改值
+				set(value) {
+					console.log('修改了age,值为', value);
+					number = value;
+				},
+			});
+		</script>
+	</body>
 </html>

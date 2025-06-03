@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>7.1事件处理的基本使用</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7.1事件处理的基本使用</title>
-  <script type="text/javascript" src="../js/vue.js"></script>
-</head>
+	<body>
+		<!--
+			事件的基本使用：
+				1.使用“v-on:xxx”或“@xxx”来绑定事件，其中“xxx”即为事件名称；
+				2.事件的回调需要配置在methods对象中，最终会在vm上；
+				3.在方法中所配置的函数，不要使用箭头函数！否则“this”就不再是“vm”了。
+				4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
+				5.@click="demo" 和 @click="demo($event)" 效果一致，但后者可以传参；
+		-->
+		<div id="root">
+			<h2>姓名:{{name}}</h2>
+			<!-- <button v-on:click="showInfo">点我提示信息</button> -->
+			<!-- 简写形式 -->
+			<button @click="showInfo">点我提示信息(不传参)</button>
+			<!-- 传参方式 -->
+			<!-- 此处`$event`相当于Vue中关键词,用于指代鼠标绑定事件 -->
+			<button @click="showInfo2($event,66)">点我提示信息(传参)</button>
+		</div>
+	</body>
 
-<body>
-  <!-- 
-    事件的基本使用：
-      1.使用“v-on:xxx”或“@xxx”来绑定事件，其中“xxx”即为事件名称；
-      2.事件的回调需要配置在methods对象中，最终会在vm上；
-      3.在方法中所配置的函数，不要使用箭头函数！否则“this”就不再是“vm”了。
-      4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
-      5.@click="demo" 和 @click="demo($event)" 效果一致，但后者可以传参；
-  -->
-  <div id="root">
-    <h2>姓名:{{name}}</h2>
-    <!-- <button v-on:click="showInfo">点我提示信息</button> -->
-    <!-- 简写形式 -->
-    <button @click="showInfo">点我提示信息(不传参)</button>
-    <!-- 传参方式 -->
-    <!-- 此处`$event`相当于Vue中关键词,用于指代鼠标绑定事件 -->
-    <button @click="showInfo2($event,66)">点我提示信息(传参)</button>
-  </div>
-</body>
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
 
-<script type="text/javascript">
-  Vue.config.productionTip = false
-
-  const vm = new Vue({
-    el: '#root',
-    // 只有配置在data中的内容才会有数据劫持,方法写在data中,会导致Vue多余劫持
-    data: {
-      name: 'Kaleus',
-    },
-    methods: {
-      /* 
+		const vm = new Vue({
+			el: '#root',
+			// 只有配置在data中的内容才会有数据劫持,方法写在data中,会导致Vue多余劫持
+			data: {
+				name: 'Kaleus',
+			},
+			methods: {
+				/*
         这里的showInfo若是写成箭头函数, 会指向全局Windows;
         普通函数：
           this 的值取决于函数被调用的方式（动态绑定）。
           在方法中，this 通常指向调用该方法的对象。
         箭头函数：
           this 是词法作用域绑定（静态绑定），即它继承自外层函数的 this 值。
-          箭头函数没有自己的 this，而是捕获定义时的 this。 
+          箭头函数没有自己的 this，而是捕获定义时的 this。
       */
 
-      showInfo(event) { //默认传回event事件
-        // console.log(event.target.innerText)
-        // console.log(this === vm)
-        // alert("点击了")
-      },
-      showInfo2(event, number) {
-        console.log(event, number)
-      }
-    }
-  })
-</script>
-
+				showInfo(event) {
+					//默认传回event事件
+					// console.log(event.target.innerText)
+					// console.log(this === vm)
+					// alert("点击了")
+				},
+				showInfo2(event, number) {
+					console.log(event, number);
+				},
+			},
+		});
+	</script>
 </html>
