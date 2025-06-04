@@ -77,6 +77,10 @@
       }
     },
     {
+      "path": "pages/test/index",
+      "type": "page"
+    },
+    {
       "path": "pages/mine/about/index",
       "type": "page",
       "style": {

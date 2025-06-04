@@ -27,6 +27,7 @@
       模板分支是：
       <text class="text-green-500">base</text>
     </view>
+    <view >点我跳转到test</view>
   </view>
 </template>
 
