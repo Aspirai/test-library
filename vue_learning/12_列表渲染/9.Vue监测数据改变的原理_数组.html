@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>12.9.Vue监测数据改变的原理_数组</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+			push() pop() shift() unshift () splice() sort() reverse()
+
+			push()
+			向数组末尾添加一个或多个元素
+			返回新数组的长度
+			例如：arr.push('新元素') 会在数组末尾添加"新元素"
+
+			pop()
+			删除并返回数组的最后一个元素
+			会改变原数组长度
+			例如：let lastItem = arr.pop()
+
+			shift()
+			删除并返回数组的第一个元素
+			所有其他元素的索引会减1
+			例如：let firstItem = arr.shift()
+
+			unshift()
+			向数组开头添加一个或多个元素
+			返回新数组的长度
+			所有原有元素的索引会增加
+			例如：arr.unshift('新元素')
+
+			splice()
+			在指定位置添加/删除元素
+			语法：array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+			例如：arr.splice(1, 1, '新元素') 表示从索引1开始，删除1个元素，然后添加"新元素"
+
+			sort()
+			对数组元素进行排序
+			默认按字符串Unicode码点升序排序
+			例如：arr.sort() 或 arr.sort((a, b) => a - b) 自定义排序
+
+			reverse()
+			颠倒数组中元素的顺序
+			返回颠倒后的数组
+			例如：arr.reverse()
+		-->
+		<div id="root">
+			<h2>姓名：{{person.name}}</h2>
+			<h2>地址：{{person.address}}</h2>
+			<h2 v-if="person.sex">性别：{{person.sex}}</h2>
+			<button @click="addSex">添加一个性别属性</button>
+			<hr />
+			<div v-for="(item, index) in hobby" :key="index">{{item}}</div>
+			<div v-for="item,index in hobby2" :key="index">{{item}}</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				person: {
+					name: 'Kaleus',
+					address: 'ChangZhou',
+				},
+				officeClerk: {
+					name: 'star',
+					address: 'ZhongLou',
+				},
+				hobby: ['animation', 'music', 'computer'],
+				hobby2: {
+					0: 'animation',
+					1: 'music',
+					2: 'computer',
+				},
+				work: [{ name: 'code', content: 'Vue' }],
+			},
+			methods: {
+				addSex() {
+					// Vue.set(this.person, 'sex', '男');
+					this.$set(this.person, 'sex', '女');
+				},
+			},
+		});
+	</script>
+</html>
