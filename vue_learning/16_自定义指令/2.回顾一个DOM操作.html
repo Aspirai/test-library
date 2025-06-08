@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>2.回顾一个DOM操作</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+	</head>
+	<body>
+		<button id="btn">点我创建一个输入框</button>
+
+		<script type="text/javascript">
+			const btn = document.getElementById('btn');
+			btn.onclick = () => {
+				const input = document.createElement('input');
+
+				input.className = 'demo';
+				input.value = 99;
+
+				document.body.appendChild(input);
+
+				input.focus();
+				input.parentElement.style.backgroundColor = 'skyblue';
+				console.log(input.parentElement);
+			};
+		</script>
+	</body>
+</html>
