@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>2.分析生命周期</title>
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<!--
+		-->
+		<div id="root">
+			<h2 v-text="n"></h2>
+			<h2>当前的n值是:{{n}}</h2>
+			<button @click="add">n值加一</button>
+			<button @click="remove">销毁vm</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false;
+
+		const vm = new Vue({
+			// 等于控制台写入vm.$mount('root')
+			el: '#root',
+			/* template: `
+				<div>
+					<h2>当前的n值是:{{n}}</h2>
+					<button @click="add">n值加一</button>
+				</div>
+			`, */
+			data: {
+				n: 1,
+			},
+			methods: {
+				add() {
+					console.log('add');
+					this.n++;
+				},
+				remove() {
+					console.log('remove');
+					// 销毁vm
+					this.$destroy();
+				},
+			},
+			watch: {
+				n() {
+					console.log('n改变了');
+				},
+			},
+			beforeCreate() {
+				console.log('beforeCreate');
+			},
+			created() {
+				console.log('created');
+				// debugger;
+			},
+			beforeMount() {
+				console.log('beforeMount');
+				// debugger;
+			},
+			mounted() {
+				console.log('mounted');
+				// debugger;
+			},
+			beforeUpdate() {
+				console.log('beforeUpdate');
+			},
+			updated() {
+				console.log('updated');
+				this.n = 99;
+				// debugger;
+			},
+			beforeDestroy() {
+				console.log('beforeDestroy', this.n);
+			},
+			destroyed() {
+				console.log('destroyed');
+			},
+		});
+	</script>
+</html>
