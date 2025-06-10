@@ -1,5 +1,5 @@
 <template>
-  <div>你好</div>
+  <div class="body">你好</div>
 </template>
 
 <script setup lang="ts">
@@ -72,4 +72,9 @@ defineOptions({
 })
 </script>
 
-<style></style>
+<style>
+.body {
+  width: 100%;
+  border: 1px solid #000;
+}
+</style>

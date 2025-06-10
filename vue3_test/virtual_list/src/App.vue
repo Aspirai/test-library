@@ -4,31 +4,38 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="root">
+    <header>
+      <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <div class="wrapper">
+        <!-- <HelloWorld msg="You did it!" /> -->
 
-      <nav>
-        <!-- <RouterLink to="/">Home</RouterLink> -->
-        <!-- <RouterLink to="/about">About</RouterLink> -->
-        <RouterLink to="/">Test Page</RouterLink>
-        <RouterLink to="/dateTimePicker">Picker Page</RouterLink>
-        <RouterLink to="/waterfall">Waterfall Page</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+        <nav>
+          <!-- <RouterLink to="/">Home</RouterLink> -->
+          <!-- <RouterLink to="/about">About</RouterLink> -->
+          <RouterLink to="/">Test Page</RouterLink>
+          <RouterLink to="/dateTimePicker">Picker Page</RouterLink>
+          <RouterLink to="/waterfall">Waterfall Page</RouterLink>
+        </nav>
+      </div>
+      <RouterView />
+    </header>
+  </div>
 </template>
 
 <style scoped>
+.root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  max-height: 100%;
 }
-
 .logo {
   display: block;
   margin: 0 auto 2rem;
@@ -71,17 +78,20 @@ nav a:first-of-type {
   }
 
   header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
     font-size: 1rem;
-
-    padding: 1rem 0;
     margin-top: 1rem;
   }
 }
