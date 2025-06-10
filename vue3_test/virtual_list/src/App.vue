@@ -11,10 +11,11 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/test">Test Page</RouterLink>
+        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <!-- <RouterLink to="/about">About</RouterLink> -->
+        <RouterLink to="/">Test Page</RouterLink>
         <RouterLink to="/dateTimePicker">Picker Page</RouterLink>
+        <RouterLink to="/waterfall">Waterfall Page</RouterLink>
       </nav>
     </div>
   </header>
