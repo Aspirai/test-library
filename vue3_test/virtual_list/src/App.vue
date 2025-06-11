@@ -26,6 +26,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped>
 .root {
+  border: 1px solid #000;
   width: 100%;
   height: 100%;
   display: flex;
@@ -67,12 +68,6 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
   .logo {
     margin: 0 2rem 0 0;
   }
