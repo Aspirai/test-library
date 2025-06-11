@@ -150,7 +150,6 @@ function onRenderComplete() {
 <style scoped>
 .waterfall-demo {
   width: 90vw;
-  /* height: 100%; */
   margin: 0 auto;
   padding: 20px;
 }
