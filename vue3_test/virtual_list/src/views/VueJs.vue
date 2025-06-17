@@ -22,6 +22,7 @@
         </div>
       </template>
     </FancyList>
+    <!-- 鼠标移动监听和封装 -->
     <MouseTracker v-slot="{ x, y }">
       <div>Mouse is at:{{ x }},{{ y }}</div>
     </MouseTracker>
@@ -30,6 +31,9 @@
         <div>Mouse is at:{{ x }},{{ y }}</div>
       </template>
     </MouseTracker>
+    <!-- 共同状态管理 -->
+    <div>{{ store.count }}</div>
+    <button @click="store.increment()">点击</button>
   </div>
 </template>
 
@@ -38,6 +42,7 @@ import { computed, ref } from 'vue'
 import ElementDateView from './ElementDateView.vue'
 import FancyList from '@/components/FancyList.vue'
 import MouseTracker from '@/components/MouseTracker.vue'
+import { store } from './store'
 
 const count = ref(0)
 const read = computed(() => count.value + 1)

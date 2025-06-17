@@ -36,11 +36,14 @@
         </template>
       </VirtList>
     </div>
+    <div>{{ store.count }}</div>
   </div>
 </template>
 
 <script lang="ts">
 import { VirtList } from 'vue-virt-list'
+// 非setup语法导入时,需要将store填入到`data()`中
+import { store } from './store'
 
 export default {
   name: 'DemoInfinity',
@@ -59,6 +62,7 @@ export default {
       },
       page: 0,
       pageSize: 30,
+      store,
     }
   },
   async created() {
