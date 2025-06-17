@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import TestView from '../views/TestView.vue'
+import VirtListView from '../views/VirtListView.vue'
 import ElementDateView from '@/views/ElementDateView.vue'
 import WaterfallView from '@/views/WaterfallView.vue'
+import VueJs from '@/views/VueJs.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,9 +22,9 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: '/',
-      name: 'test',
-      component: TestView,
+      path: '/virtListView',
+      name: 'virtListView',
+      component: VirtListView,
     },
     {
       path: '/dateTimePicker',
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/waterfall',
       name: 'waterfall',
       component: WaterfallView,
+    },
+    {
+      path: '/vueJs',
+      name: 'vueJs',
+      component: VueJs,
     },
   ],
 })
