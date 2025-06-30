@@ -1,5 +1,5 @@
 <template>
-	<div style="background-color: aqua">
+	<div>
 		<h2>学校地址:{{ address }}</h2>
 		<h2>学校名称:{{ name }}</h2>
 		<button @click="showName">提示</button>
