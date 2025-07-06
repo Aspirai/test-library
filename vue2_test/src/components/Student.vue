@@ -1,10 +1,7 @@
 <template>
-	<div>
-		<h2>学生姓名:{{ name }}</h2>
+	<div class="demo">
+		<h2 class="title que">学生姓名:{{ name }}</h2>
 		<h2>学生年龄:{{ age }}</h2>
-		<input type="text" v-fbind:value="name" />
-		{{ x }}
-		<button @click="test">点我测试hello方法</button>
 	</div>
 </template>
 
@@ -17,12 +14,14 @@ export default {
 			age: '14',
 		};
 	},
-	methods: {
-		test() {
-			this.hello();
-		},
-	},
 };
 </script>
 
-<style></style>
+<style scoped lang="less">
+.demo {
+	background-color: blue;
+	.que {
+		font-size: 40px;
+	}
+}
+</style>

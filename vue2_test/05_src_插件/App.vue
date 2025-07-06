@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<h1 class="title">你好啊</h1>
 		<Student />
 		<StudentTow />
 	</div>
@@ -20,8 +19,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.title {
-	color: red;
-}
-</style>
+<style></style>

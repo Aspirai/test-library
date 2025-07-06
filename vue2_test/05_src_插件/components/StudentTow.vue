@@ -1,6 +1,6 @@
 <template>
-	<div class="demo">
-		<h2 class="title">学生姓名:{{ name }}</h2>
+	<div>
+		<h2>学生姓名:{{ name | mySlice }}</h2>
 		<h2>学生年龄:{{ age }}</h2>
 	</div>
 </template>
@@ -17,8 +17,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.demo{
-	background-color: aquamarine;
-}
-</style>
+<style></style>
