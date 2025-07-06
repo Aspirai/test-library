@@ -2,6 +2,9 @@
 	<div>
 		<h2>学生姓名:{{ name }}</h2>
 		<h2>学生年龄:{{ age }}</h2>
+		<input type="text" v-fbind:value="name" />
+		{{ x }}
+		<button @click="test">点我测试hello方法</button>
 	</div>
 </template>
 
@@ -13,6 +16,11 @@ export default {
 			name: 'Kaleus',
 			age: '14',
 		};
+	},
+	methods: {
+		test() {
+			this.hello();
+		},
 	},
 };
 </script>
