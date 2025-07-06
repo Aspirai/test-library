@@ -11,7 +11,7 @@ export default {
 	data() {
 		return {
 			name: 'Kaleus',
-			age: '14',
+			age: '18',
 		};
 	},
 };
