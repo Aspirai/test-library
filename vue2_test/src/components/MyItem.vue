@@ -1,12 +1,10 @@
 <template>
 	<li>
 		<label>
-			<input type="checkbox" :checked="todos.statue" @click="handleCheck(todos.id)" />
-			<!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
-			<!-- <input type="checkbox" v-model="todo.done"/> -->
-			<span>{{ todos.title }}</span>
+			<input type="checkbox" :checked="todo.statue" @change="handleCheck(todo.id)" />
+			<span :class="{ done: todo.statue }">{{ todo.title }}</span>
 		</label>
-		<button class="btn btn-danger">删除</button>
+		<button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
 	</li>
 </template>
 
@@ -14,13 +12,20 @@
 export default {
 	name: 'MyItem',
 	props: {
-		todos: Object,
+		todo: Object,
+		checkTodo: Function,
+		deleteTodo: Function,
 	},
 	methods: {
-		handleCheck ( id ) {
-			console.log( 'id', id );
-		}
-	}
+		handleCheck(id) {
+			this.checkTodo(id);
+		},
+		handleDelete(id) {
+			if (confirm('确定删除吗？')) {
+				this.deleteTodo(id);
+			}
+		},
+	},
 };
 </script>
 
@@ -65,5 +70,10 @@ li:hover {
 
 li:hover button {
 	display: block;
+}
+
+.done {
+	text-decoration: line-through;
+	color: #999;
 }
 </style>
