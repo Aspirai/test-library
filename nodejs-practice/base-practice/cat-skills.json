@@ -1,0 +1,23 @@
+{
+  "frontend": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Vue.js"
+  ],
+  "backend": [
+    "Node.js",
+    "Express",
+    "正在学习中..."
+  ],
+  "database": [
+    "SQL基础",
+    "MongoDB",
+    "准备学习..."
+  ],
+  "other": [
+    "卖萌",
+    "写可爱的代码注释",
+    "用喵语编程"
+  ]
+}
