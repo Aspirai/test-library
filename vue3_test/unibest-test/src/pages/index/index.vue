@@ -27,7 +27,8 @@
       模板分支是：
       <text class="text-green-500">base</text>
     </view>
-    <view >点我跳转到test</view>
+    <view>点我跳转到test</view>
+    <view @click="getLocation">定位获取</view>
   </view>
 </template>
 
@@ -48,6 +49,30 @@ const description = ref(
 onLoad(() => {
   console.log('项目作者:', author.value)
 })
+
+const getLocation = () => {
+  uni.authorize({
+    scope: 'scope.userLocation',
+    success() {
+      uni.getLocation({
+        type: 'gcj02',
+        success(res) {
+          const latitude = res.latitude
+          const longitude = res.longitude
+          const speed = res.speed
+          const accuracy = res.accuracy
+          console.log('位置信息:', { latitude, longitude, speed, accuracy })
+        },
+        fail(err) {
+          console.error('获取位置失败:', err)
+        },
+      })
+    },
+    fail() {
+      console.log('用户拒绝授权位置信息')
+    },
+  })
+}
 </script>
 
 <style>
