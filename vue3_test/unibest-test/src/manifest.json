@@ -88,6 +88,7 @@
       "urlCheck": false
     },
     "usingComponents": true,
+		
     "requiredPrivateInfos": [
       "getLocation"
     ],

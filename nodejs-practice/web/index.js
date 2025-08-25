@@ -160,15 +160,81 @@
 // console.log([...intersection]); // ['小白', '小黑']
 // console.log([...cats,...dogs])
 
-const catInfo = new Map();
+// const catInfo = new Map();
 
-catInfo.set('小花', { age: 2, color: '橘色' });
+// catInfo.set('小花', { age: 2, color: '橘色' });
 
-console.log(catInfo);
-console.log(catInfo.get('小花'));
+// console.log(catInfo);
+// console.log(catInfo.get('小花'));
 
-const mapCats = new Map();
-const objCats = { breed: '波斯猫' };
-mapCats.set(objCats, '这是波斯猫信息');
-console.log(mapCats.get(objCats));
+// const mapCats = new Map();
+// const objCats = { breed: '波斯猫' };
+// mapCats.set(objCats, '这是波斯猫信息');
+// console.log(mapCats.get(objCats));
 
+// // Creates a new WebSocket connection to the specified URL.
+// const socket = new WebSocket('ws://localhost:8080');
+
+// // Executes when the connection is successfully established.
+// socket.addEventListener('open', event => {
+//   console.log('WebSocket connection established!');
+//   // Sends a message to the WebSocket server.
+//   socket.send('Hello Server!');
+// });
+
+// // Listen for messages and executes when a message is received from the server.
+// socket.addEventListener('message', event => {
+//   console.log('Message from server: ', event.data);
+// });
+
+// // Executes when the connection is closed, providing the close code and reason.
+// socket.addEventListener('close', event => {
+//   console.log('WebSocket connection closed:', event.code, event.reason);
+// });
+
+// // Executes if an error occurs during the WebSocket communication.
+// socket.addEventListener('error', error => {
+//   console.error('WebSocket error:', error);
+// });
+
+const { setTimeout: delay } = require('node:timers/promises');
+
+const promise1 = delay(1000).then(() => 'First task completed');
+
+// promise
+// 	.then(result => {
+// 		console.log(result); // 'First task completed'
+// 		return delay(1000).then(() => 'Second task completed'); // Return a second Promise
+// 	})
+// 	.then(result => {
+// 		console.log(result); // 'Second task completed'
+// 	})
+// 	.catch(error => {
+// 		console.error(error); // If any Promise is rejected, catch the error
+// 	});
+
+// async function performTasks() {
+// 	try {
+// 		const result1 = await promise1;
+// 		console.log(result1); // 'First task completed'
+
+// 		const result2 = await promise2;
+// 		console.log(result2); // 'Second task completed'
+// 	} catch (error) {
+// 		console.error(error); // Catches any rejection or error
+// 	}
+// }
+
+// performTasks();
+
+promise1
+	.then(function (result1) {
+		console.log(result1);
+		return promise2;
+	})
+	.then(function (result2) {
+		console.log(result2);
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
